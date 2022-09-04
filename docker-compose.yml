@@ -19,7 +19,8 @@ services:
      ports:
        - 3306:3306
      environment:
-       MYSQL_ROOT_PASSWORD: secretpasswd
+       - MYSQL_ROOT_PASSWORD=sicretpasswd
+       - MYSQL_DATABASE=crud_db
      volumes:
        - ./script.sql:/docker-entrypoint-initdb.d/script.sql
        - ./db:/var/lib/mysql
