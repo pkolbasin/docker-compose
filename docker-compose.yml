@@ -1,0 +1,35 @@
+
+version: "3.8"
+
+services:
+  web:
+    build: ./app/
+    container_name: cruds_app
+    depends_on:
+      - mysql
+    ports:
+      - "8080:80"
+    networks:
+      hillel:
+        ipv4_address: 10.10.0.100
+
+  mysql:
+     image: mysql
+     container_name: cruds_db
+     ports:
+       - 3306:3306
+     environment:
+       MYSQL_ROOT_PASSWORD: secretpasswd
+     volumes:
+       - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+       - ./db:/var/lib/mysql
+     networks:
+       hillel:
+         ipv4_address: 10.10.0.200
+networks:
+  hillel:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.0/24
+
