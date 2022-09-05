@@ -3,7 +3,7 @@
 session_start();
 
 $conn = mysqli_connect(
-  '192.168.0.200',
+  '10.10.0.200',
   'root',
   'sicretpasswd',
   'crud_db'
